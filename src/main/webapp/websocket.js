@@ -6,13 +6,14 @@ function connect() {
     var host = document.location.host;
     var pathname = document.location.pathname;
     
-    ws = new WebSocket("ws://" +host  + pathname + "chat/" + username);
-    // = new WebSocket("ws://nova.powersquare.com/java-websocket/chat/" + username);
-
+    ws = new WebSocket("wss://" +host  + pathname + "chat/" + username);
+    // ws= new WebSocket("wss://java-web-socket.herokuapp.com/chat/" + username);
+    console.log(host+pathname);
 
     ws.onmessage = function(event) {
     var log = document.getElementById("log");
         console.log(event.data);
+
         var message = JSON.parse(event.data);
         log.innerHTML += message.from + " : " + message.content + "\n";
     };
